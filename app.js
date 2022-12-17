@@ -6,7 +6,7 @@ const path = require('path')
 const cors = require('cors')
 const compression = require('compression')
 
-const UsersRoutes = require('./routes/employee.routes')
+const EmployeeRoutes = require('./routes/employee.routes')
 
 require('dotenv').config()
 
@@ -23,7 +23,7 @@ app.use(helmet())
 
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
-app.use('/users', UsersRoutes)
+app.use('/employees', EmployeeRoutes)
 
 app.get('*', (req, res) => {
   res.status(200).send('Server is running');
