@@ -4,7 +4,7 @@
   "description": "express-rest-api",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app",
+    "start": "node app.js",
     "test": "jest --watch"
   },
   "jest": {
@@ -30,7 +30,6 @@
     "express": "^4.18.2",
     "helmet": "^6.0.1",
     "mongoose": "^6.8.0",
-    "node": "^19.3.0",
-    "nodemon": "^2.0.20"
+    "node": "^19.3.0"
   }
 }

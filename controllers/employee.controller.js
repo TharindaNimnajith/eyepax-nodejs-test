@@ -4,12 +4,14 @@ const addEmployee = async (req, res) => {
   let {
     name,
     email,
+    profile_picture,
     status
   } = req.body
 
   const employee = new EmployeeModel({
     name,
     email,
+    profile_picture,
     status
   })
 
@@ -38,24 +40,33 @@ const updateEmployee = async (req, res) => {
   const {
     name,
     email,
+    profile_picture,
     status
   } = req.body
 
-  try {
-    employee = await EmployeeModel.findById(id)
+  employee = await EmployeeModel.findById(id)
+
+  if (employee) {
     employee.name = name
     employee.email = email
+    employee.profile_picture = profile_picture
     employee.status = status
-    await employee.save()
-    res.status(200).send({
-      status: 200,
-      data: employee
-    })
-  } catch (error) {
-    console.error(error)
-    res.status(400).send({
-      status: 400,
-      error: error
+    try {
+      await employee.save()
+      res.status(200).send({
+        status: 200,
+        data: employee
+      })
+    } catch (error) {
+      console.error(error)
+      res.status(400).send({
+        status: 400,
+        error: error
+      })
+    }
+  } else {
+    res.status(404).send({
+      status: 404
     })
   }
 }
@@ -67,18 +78,16 @@ const deleteEmployee = async (req, res) => {
     id
   } = req.params
 
-  try {
-    employee = await EmployeeModel.findById(id)
+  employee = await EmployeeModel.findById(id)
+
+  if (employee) {
     await employee.remove()
     res.status(202).send({
-      status: 202,
-      data: employee
+      status: 202
     })
-  } catch (error) {
-    console.error(error)
+  } else {
     res.status(404).send({
-      status: 404,
-      error: error
+      status: 404
     })
   }
 }
@@ -90,35 +99,31 @@ const getEmployee = async (req, res) => {
     id
   } = req.params
 
-  try {
-    employee = await EmployeeModel.findById(id)
+  employee = await EmployeeModel.findById(id)
+
+  if (employee) {
     res.status(200).send({
       status: 200,
       data: employee
     })
-  } catch (error) {
-    console.error(error)
+  } else {
     res.status(404).send({
-      status: 404,
-      error: error
+      status: 404
     })
   }
 }
 
 const getEmployeeList = async (req, res) => {
-  let employees
+  let employees = await EmployeeModel.find()
 
-  try {
-    employees = await EmployeeModel.find()
+  if (!Array.isArray(employees) || !employees.length) {
+    res.status(404).send({
+      status: 404
+    })
+  } else {
     res.status(200).send({
       status: 200,
       data: employees
-    })
-  } catch (error) {
-    console.error(error)
-    res.status(404).send({
-      status: 404,
-      error: error
     })
   }
 }

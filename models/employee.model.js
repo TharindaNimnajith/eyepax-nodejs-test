@@ -22,7 +22,10 @@ const EmployeeSchema = new Schema({
     validate: [
       validateEmail,
       'Email is invalid.'
-    ],
+    ]
+  },
+  profile_picture: {
+    type: String
   },
   status: {
     type: String,
