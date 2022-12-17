@@ -1,3 +1,5 @@
+# Eyepax Node.js Test
+
 ## Instructions
 
 1. Clone the GitHub repository.
@@ -10,7 +12,7 @@
 
 POST http://localhost:5000/employees/employees
 
-Request body
+Request body example:
 
 ```
 {
@@ -29,27 +31,33 @@ GET http://localhost:5000/employees/employees
 
 GET http://localhost:5000/employees/employees/:id
 
+Example:
+
 ```
-Eg: http://localhost:5000/employees/employees/639d9b526bdb1a0a42c6cf22
+http://localhost:5000/employees/employees/639d9b526bdb1a0a42c6cf22
 ```
 
 ### Delete Employee by ID
 
 DELETE http://localhost:5000/employees/employees/:id
 
+Example:
+
 ```
-Eg: http://localhost:5000/employees/employees/639d9b526bdb1a0a42c6cf22
+http://localhost:5000/employees/employees/639d9b526bdb1a0a42c6cf22
 ```
 
 ### Update Employee by ID
 
 PUT http://localhost:5000/employees/employees/:id
 
+Example:
+
 ```
-Eg: http://localhost:5000/employees/employees/639d9b526bdb1a0a42c6cf22
+http://localhost:5000/employees/employees/639d9b526bdb1a0a42c6cf22
 ```
 
-Request body
+Request body example:
 
 ```
 {
