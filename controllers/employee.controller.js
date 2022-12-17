@@ -32,16 +32,19 @@ const updateEmployee = async (req, res) => {
   let employee
 
   const {
+    id
+  } = req.params
+
+  const {
     name,
     email,
     status
   } = req.body
 
   try {
-    employee = await EmployeeModel.findOne({
-      email: email
-    })
+    employee = await EmployeeModel.findById(id)
     employee.name = name
+    employee.email = email
     employee.status = status
     await employee.save()
     res.status(200).send({
@@ -61,13 +64,11 @@ const deleteEmployee = async (req, res) => {
   let employee
 
   const {
-    email
-  } = req.body
+    id
+  } = req.params
 
   try {
-    employee = await EmployeeModel.findOne({
-      email: email
-    })
+    employee = await EmployeeModel.findById(id)
     await employee.remove()
     res.status(202).send({
       status: 202,
@@ -86,13 +87,11 @@ const getEmployee = async (req, res) => {
   let employee
 
   const {
-    email
+    id
   } = req.params
 
   try {
-    employee = await EmployeeModel.findOne({
-      email: email
-    })
+    employee = await EmployeeModel.findById(id)
     res.status(200).send({
       status: 200,
       data: employee

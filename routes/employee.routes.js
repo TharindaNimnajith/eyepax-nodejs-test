@@ -5,9 +5,9 @@ const EmployeeController = require('../controllers/employee.controller')
 const router = express.Router()
 
 router.post('/employees', EmployeeController.addEmployee)
-router.put('/employees', EmployeeController.updateEmployee)
-router.delete('/employees', EmployeeController.deleteEmployee)
-router.get('/employees/:email', EmployeeController.getEmployee)
+router.put('/employees/:id', EmployeeController.updateEmployee)
+router.delete('/employees/:id', EmployeeController.deleteEmployee)
+router.get('/employees/:id', EmployeeController.getEmployee)
 router.get('/employees', EmployeeController.getEmployeeList)
 
 module.exports = router
