@@ -116,7 +116,7 @@ const getEmployee = async (req, res) => {
 const getEmployeeList = async (req, res) => {
   let employees = await EmployeeModel.find()
 
-  if (!Array.isArray(employees) || !employees.length) {
+  if (!Array.isArray(employees)) {
     res.status(404).send({
       status: 404
     })

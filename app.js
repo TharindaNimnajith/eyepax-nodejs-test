@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const helmet = require('helmet')
 const path = require('path')
@@ -12,11 +11,7 @@ require('dotenv').config()
 
 const app = express()
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(compression())
 app.use(cors())
 app.use(helmet())
@@ -26,7 +21,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use('/employees', EmployeeRoutes)
 
 app.get('*', (req, res) => {
-  res.status(200).send('Server is running');
+  res.status(200).send('Server is running')
 })
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 1
@@ -41,8 +36,9 @@ const options = {
   dbName: dbName
 }
 
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', false)
 
+// noinspection JSUnresolvedFunction
 mongoose.connect(uri, options).then(() => {
   app.listen(port)
   console.log(`Server is running on port: ${port}`)
